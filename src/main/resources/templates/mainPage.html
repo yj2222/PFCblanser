@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <!-- Bootstrapの設定 -->
+	<link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet"></link>
+	<script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <!-- CSSの読込 -->
+    <link th:href="@{/css/reset.css}" rel="stylesheet"></link>
+    <link th:href="@{/css/mainPage.css}" rel="stylesheet"></link>
+    <title>PFCbalancer</title>
+</head>
+<body>
+	<div class="header">
+		<h1><a th:href="@{'/'}">PFCbalancer</a></h1>
+		<div class="headerBtns">
+			<a href="#" class="headerBtn">/ Login</a>
+			<a href="#" class="headerBtn">/ Signup</a>
+		</div>
+	</div>
+	<div class="body" style="background-image: url(image/indexTop.jpg);">
+		<div class="innerBlack">
+		
+			<div class="bodyCalcArea">
+				<h2 class="bodyCalcArea__title">Input Data</h2>
+				<div class="bodyCalcAreaContainer d-sm-flex justify-content-center">
+					<form method="post" th:action="@{/main/calc}" th:object="${formBodyData}" class="bodyCalcArea__input">
+						<table class="mx-auto mx-md-3">
+							<tr>
+								<th class="bodyCalcArea__input--left">体重：</th>
+								<td>
+									<div class="bodyCalcArea__input--right">
+										<input type="number" name="weight" min="30" max="200" class="" th:field="*{weight}">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="bodyCalcArea__input--left">身長：</th>
+								<td>
+									<div class="bodyCalcArea__input--right">
+										<input type="number" name="height" min="130" max="250" class="" th:field="*{height}">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="bodyCalcArea__input--left">年齢：</th>
+								<td>
+									<div class="bodyCalcArea__input--right">
+										<input type="number" name="age" min="0" max="100" class="" th:field="*{age}">
+									</div>
+								</td>
+							</tr>
+						</table>
+						<div class="bodyCalcArea__input--btn">
+							<button type="submit" class="bodyCalcArea__input--btnSubmit">Calc</button>
+						</div>
+					</form>
+					<table class="bodyCalcArea__result mx-auto mx-md-3">
+						<tr>
+							<td class="bodyCalcArea__result--left borderGray">Protein(タンパク質)</td>
+							<td th:text="${protein} + kal" class="bodyCalcArea__result--right borderGray"></td>
+						</tr>
+						<tr>
+							<td class="bodyCalcArea__result--left borderGray">Fat(脂質)</td>
+							<td th:text="${fat} + kal" class="bodyCalcArea__result--right borderGray"></td>
+						</tr>
+						<tr>
+							<td class="bodyCalcArea__result--left borderGray">Carbohydrate(炭水化物)</td>
+							<td th:text="${carb} + kal" class="bodyCalcArea__result--right borderGray"></td>
+						</tr>
+						<tr>
+							<td class="bodyCalcArea__result--left">総摂取カロリー目安</td>
+							<td th:text="${kal} + kal" class="bodyCalcArea__result--right"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		
+			<!-- チャート描画キャンバス -->
+			<div style="background-color: white;">
+				<div class="bodyChart">
+					<h2 class="bodyChart__Title">PCF(Radar Chart)</h2>
+					<canvas id="myChart"></canvas>
+				</div>
+			</div>
+			
+		</div>
+			
+		<script type="text/javascript" th:inline="javascript">
+
+		// 色の設定
+		var colorSet = {
+			red: 'rgb(255, 99, 132)',
+			yellow: 'rgb(255, 205, 86)',
+			blue: 'rgb(54, 162, 235)'
+		};
+		
+		// 色のRGB変換
+		var color = Chart.helpers.color;
+		
+		// チャートの初期設定
+		var config = {
+			type: 'radar',
+			data: {
+				labels:[[ ${label} ]],
+				datasets: [{
+					label: "idealPCF(PCFの推奨値)",
+					backgroundColor: color(colorSet.red).alpha(0.5).rgbString(),
+					borderColor: colorSet.red,
+					pointBackgroundColor: colorSet.red,
+					data:[ /*[[${ carb }]]*/, /*[[${ fat }]]*/, /*[[${ protein }]]*/ ]
+				},{
+					label: "now(現在のPCFの推奨値)",
+					backgroundColor: color(colorSet.blue).alpha(0.5).rgbString(),
+					borderColor: colorSet.blue,
+					pointBackgroundColor: colorSet.blue,
+					data:[0, 0, 0]
+				},]
+			},
+			options: {
+				animation: false,
+				showTooltips: false,
+				legend: {position: 'bottom'},
+				title: {
+					display: false,
+					fontSize:20,
+					fontColor:'#666',
+					text: 'PFCbalancer'
+				},
+				scale: {
+					display: true,
+					pointLabels: {
+						fontSize: 15,
+						fontColor: colorSet.yellow
+					},
+					ticks: {
+						display: true,
+						fontSize: 12,
+						min: 0,
+						max: /*[[${ kal }]]*/,
+						beginAtZero: true
+					},
+					gridLines: {
+						display: true,
+						color: colorSet.yellow
+					}
+				}
+			}
+		};
+		
+		/*
+		 * チャートの作成
+		 */
+		var myRadar = new Chart($("#myChart"), config);
+	</script>
+	   	   
+		
+	</div>
+	
+	
+	
+    
+<body>
+</html>
