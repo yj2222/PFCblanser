@@ -1,161 +1,155 @@
-@media screen and (min-width: 500px) { 
-	.header{
-		display: flex;
-		justify-content: space-between;
-		height: 60px;
-		width: 100%;
-		background-color: black;
-		color: white;
-		position: fixed;
-		top: 0;
-		z-index: 10;
-	}
-	
-	h1{
-		font-size: 30px;
-		line-height: 60px;
-		padding-left:50px;
-	}
-	
-	a{
-		text-decoration: none;
-		color: white;
-	}
-	
-	.headerBtns{
-		padding-right:50px;
-	}
-	
-	.headerBtn{
-		line-height: 60px;
-		cursor: pointer;
-		position: relative;
-	}
-	
-	.headerBtn::after {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		content: '';
-		width: 100%;
-		height: 2px;
-		background: red;
-		transform: scale(0, 1);
-		transform-origin: center top;
-		transition: transform .3s;
-	}
-	
-	.headerBtn:hover{
-		color: red;
-		transition:  0.3s;
-	}
-	
-	.headerBtn:hover::after{
-		color: red;
-		transform: scale(1, 1);
-	}
-	
-	.body{
-		background-size: cover;
-	}
-	
-	.innerBlack {
-		background-color: rgba(0, 0, 0, 0.5);
-	}
-	
-	.bodyCalcArea{
-		color: rgb(255, 255, 255);
-		text-align: center;
-		font-weight: bold;
-	}
-	
-	.bodyCalcArea__title{
-		padding: 110px 0 50px;
-		font-weight: bold;
-		font-size: 30px; 
-	}
-	
-	.bodyCalcAreaContainer{
-		margin: 0 auto;
-		padding-bottom: 50px;
-	}
-	
-	.bodyCalcArea__input{
-	}
-	
-	table{
-		margin: 0 auto;
-	}
-	
-	.bodyCalcArea__input--left{
-		height: 30px;
-		padding: 0 10px;
-		font-weight: bold;
-	}
-	
-	input[type="number"]{
-		height: 30px;
-		width: 100px;
-		padding-left: 10px;
-		border-radius: 10px;
-	}
-	
-	.bodyCalcArea__input--btn{
-		width: 100%;
-		text-align: center;	
-		padding: 10px 0;
-	}
-	
-	.bodyCalcArea__input--btnSubmit{
-		width: 150px;
-		height: 35px;
-		border-radius: 20px;
-		background-color: blue;
-		color: white;
-		font-weight: bold;
-		font-size: 20px;
-	}
-	
-	.bodyCalcArea__result{
-		border: 2px solid white;
-	}
-	
-	.bodyCalcArea__result--title{
-		padding: 10px 0;
-		border-bottom: 2px solid white;
-		color: aqua;
-	}
-	
-	.bodyCalcArea__result--left{
-		padding: 10px 15px;
-		border-right: 1px dashed white;
-	}
-	
-	.bodyCalcArea__result--right{
-		padding: 10px 15px;
-	}
-	
-	.borderGray{
-		border-bottom: 1px dashed lightgray;
-	}
-	
-	.bodyChart{
-		 max-width: 900px; 
-		 margin: 0 auto; 
-		 text-align: center;
-	}
-	
-	.bodyChart__Title{
-		padding: 50px 0;
-		font-weight: bold;
-		font-size: 30px; 
-	}
+@media screen and (max-width: 499px) { 
+
 }
 
+.header{
+	display: flex;
+	justify-content: space-between;
+	height: 60px;
+	width: 100%;
+	background-color: black;
+	color: white;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+}
 
+h1{
+	font-size: 30px;
+	line-height: 60px;
+	padding-left:50px;
+}
 
-@media screen and (max-width: 499px) { 
-	table{
-		margin: 20px;
-	}
+a{
+	text-decoration: none;
+	color: white;
+}
+
+.headerBtns{
+	padding-right:50px;
+}
+
+.headerBtn{
+	line-height: 60px;
+	cursor: pointer;
+	position: relative;
+}
+
+.headerBtn::after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: red;
+	transform: scale(0, 1);
+	transform-origin: center top;
+	transition: transform .3s;
+}
+
+.headerBtn:hover{
+	color: red;
+	transition:  0.3s;
+}
+
+.headerBtn:hover::after{
+	color: red;
+	transform: scale(1, 1);
+}
+
+.body{
+	background-size: cover;
+}
+
+.innerBlack {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bodyCalcArea{
+	color: rgb(255, 255, 255);
+	text-align: center;
+	font-weight: bold;
+}
+
+.bodyCalcArea__title{
+	padding: 110px 0 50px;
+	font-weight: bold;
+	font-size: 30px; 
+}
+
+.bodyCalcAreaContainer{
+	margin: 0 auto;
+	padding-bottom: 50px;
+}
+
+.bodyCalcArea__input{
+}
+
+table{
+	margin: 0 auto;
+}
+
+.bodyCalcArea__input--left{
+	height: 30px;
+	padding: 0 10px;
+	font-weight: bold;
+}
+
+input[type="number"]{
+	height: 30px;
+	width: 100px;
+	padding-left: 10px;
+	border-radius: 10px;
+}
+
+.bodyCalcArea__input--btn{
+	width: 100%;
+	text-align: center;	
+	padding: 10px 0;
+}
+
+.bodyCalcArea__input--btnSubmit{
+	width: 150px;
+	height: 35px;
+	border-radius: 20px;
+	background-color: blue;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.bodyCalcArea__result{
+	border: 2px solid white;
+}
+
+.bodyCalcArea__result--title{
+	padding: 10px 0;
+	border-bottom: 2px solid white;
+	color: aqua;
+}
+
+.bodyCalcArea__result--left{
+	padding: 10px 15px;
+	border-right: 1px dashed white;
+}
+
+.bodyCalcArea__result--right{
+	padding: 10px 15px;
+}
+
+.borderGray{
+	border-bottom: 1px dashed lightgray;
+}
+
+.bodyChart{
+		max-width: 900px; 
+		margin: 0 auto; 
+		text-align: center;
+}
+
+.bodyChart__Title{
+	padding: 50px 0;
+	font-weight: bold;
+	font-size: 30px; 
 }
