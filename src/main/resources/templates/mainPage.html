@@ -90,78 +90,80 @@
 					<canvas id="myChart"></canvas>
 				</div>
 			</div>
-			
+
 		</div>
+	</div>
+	<footer>
+		<div>
+			<p class="footerText">copyLighting product by Yuji</p>
+		</div>
+	</footer>
+	<script type="text/javascript" th:inline="javascript">
+			/*<![CDATA[*/
+			// 色の設定
+			var colorSet = {
+				red: 'rgb(255, 99, 132)',
+				yellow: 'rgb(255, 205, 86)',
+				blue: 'rgb(54, 162, 235)'
+			};
 			
-		<script type="text/javascript" th:inline="javascript">
-		/*<![CDATA[*/
-		// 色の設定
-		var colorSet = {
-			red: 'rgb(255, 99, 132)',
-			yellow: 'rgb(255, 205, 86)',
-			blue: 'rgb(54, 162, 235)'
-		};
-		
-		// 色のRGB変換
-		var color = Chart.helpers.color;
-		
-		// チャートの初期設定
-		var config = {
-			type: 'radar',
-			data: {
-				labels:/*[[${ label }]]*/,
-				datasets: [
-					{
-					label: "idealPCF(PCFの推奨値)",
-					backgroundColor: color(colorSet.red).alpha(0.5).rgbString(),
-					borderColor: colorSet.red,
-					pointBackgroundColor: colorSet.red,
-					data:[ /*[[${ carb }]]*/, /*[[${ fat * 3 }]]*/, /*[[${ protein * 3 }]]*/ ]
-					},
-					{
-					label: "now(現在のPCFの推奨値)",
-					backgroundColor: color(colorSet.blue).alpha(0.5).rgbString(),
-					borderColor: colorSet.blue,
-					pointBackgroundColor: colorSet.blue,
-					data:[1800, 1200, 800]
-					},
-				]
-			},
-			options: {
-				legend: {position: 'bottom'},
-				title: {
-					display: false,
-					fontSize: 20,
-					fontColor:'#666',
-					text: 'PFCbalancer'
+			// 色のRGB変換
+			var color = Chart.helpers.color;
+			
+			// チャートの初期設定
+			var config = {
+				type: 'radar',
+				data: {
+					labels:/*[[${ label }]]*/,
+					datasets: [
+						{
+						label: "idealPCF(PCFの推奨値)",
+						backgroundColor: color(colorSet.red).alpha(0.5).rgbString(),
+						borderColor: colorSet.red,
+						pointBackgroundColor: colorSet.red,
+						data:[ /*[[${ carb }]]*/, /*[[${ fat * 3 }]]*/, /*[[${ protein * 3 }]]*/ ]
+						},
+						{
+						label: "now(現在のPCFの推奨値)",
+						backgroundColor: color(colorSet.blue).alpha(0.5).rgbString(),
+						borderColor: colorSet.blue,
+						pointBackgroundColor: colorSet.blue,
+						data:[1800, 1200, 800]
+						},
+					]
 				},
-				scale: {
-					display: true,
-					pointLabels: {
-						fontSize: 15,
-						fontColor: colorSet.yellow
+				options: {
+					legend: {position: 'bottom'},
+					title: {
+						display: false,
+						fontSize: 20,
+						fontColor:'#666',
+						text: 'PFCbalancer'
 					},
-					ticks: {
+					scale: {
 						display: true,
-						fontSize: 12,
-						max: /*[[${ kal }]]*/,
-						beginAtZero: true
-					},
-					gridLines: {
-						display: true,
-						color: colorSet.yellow
+						pointLabels: {
+							fontSize: 15,
+							fontColor: colorSet.yellow
+						},
+						ticks: {
+							display: true,
+							fontSize: 12,
+							max: /*[[${ kal }]]*/,
+							beginAtZero: true
+						},
+						gridLines: {
+							display: true,
+							color: colorSet.yellow
+						}
 					}
 				}
-			}
-		};
+			};
 		// チャート作成
 		var context = document.getElementById("myChart").getContext('2d');
 		var myRadar = new Chart(context, config);
-	/*]]>*/
+		/*]]>*/
 	</script>
-	   	   
-		
-	</div>
 	
 	
 	
