@@ -163,3 +163,15 @@ input[type="number"]{
 	font-weight: bold;
 	font-size: 30px; 
 }
+
+footer{
+	background-color: black;
+	height: 60px;
+	color: white;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.footerText{
+	line-height: 60px;
+}
