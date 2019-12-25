@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8"></meta>
     <!-- Bootstrapの設定 -->
-	<link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet"></link>
-	<script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
-	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+	<!-- <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet"></link> -->
+	<!-- <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script> -->
+	<!-- <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <!-- CSSの読込 -->
     <link th:href="@{/css/reset.css}" rel="stylesheet"></link>
@@ -20,7 +20,7 @@
 			<a href="#" class="headerBtn">/ Signup</a>
 		</div>
 	</div>
-	<div class="body" style="background-image: url(image/indexTop.jpg);">
+	<div class="body" style="background-image: url(../image/indexTop.jpg);">
 		<div class="innerBlack">
 		
 			<div class="bodyCalcArea">
@@ -59,6 +59,9 @@
 					</form>
 					<table class="bodyCalcArea__result mx-auto mx-md-3">
 						<tr>
+							<th colspan="2" class="bodyCalcArea__result--title">PFC基準値</th>
+						</tr>
+						<tr>
 							<td class="bodyCalcArea__result--left borderGray">Protein(タンパク質)</td>
 							<td th:text="${protein} + kal" class="bodyCalcArea__result--right borderGray"></td>
 						</tr>
@@ -89,7 +92,7 @@
 		</div>
 			
 		<script type="text/javascript" th:inline="javascript">
-
+		/*<![CDATA[*/
 		// 色の設定
 		var colorSet = {
 			red: 'rgb(255, 99, 132)',
@@ -104,28 +107,29 @@
 		var config = {
 			type: 'radar',
 			data: {
-				labels:[[ ${label} ]],
-				datasets: [{
+				labels:/*[[${ label }]]*/,
+				datasets: [
+					{
 					label: "idealPCF(PCFの推奨値)",
 					backgroundColor: color(colorSet.red).alpha(0.5).rgbString(),
 					borderColor: colorSet.red,
 					pointBackgroundColor: colorSet.red,
-					data:[ /*[[${ carb }]]*/, /*[[${ fat }]]*/, /*[[${ protein }]]*/ ]
-				},{
+					data:[ /*[[${ carb }]]*/, /*[[${ fat * 3 }]]*/, /*[[${ protein * 3 }]]*/ ]
+					},
+					{
 					label: "now(現在のPCFの推奨値)",
 					backgroundColor: color(colorSet.blue).alpha(0.5).rgbString(),
 					borderColor: colorSet.blue,
 					pointBackgroundColor: colorSet.blue,
-					data:[0, 0, 0]
-				},]
+					data:[1800, 1200, 800]
+					},
+				]
 			},
 			options: {
-				animation: false,
-				showTooltips: false,
 				legend: {position: 'bottom'},
 				title: {
 					display: false,
-					fontSize:20,
+					fontSize: 20,
 					fontColor:'#666',
 					text: 'PFCbalancer'
 				},
@@ -138,7 +142,6 @@
 					ticks: {
 						display: true,
 						fontSize: 12,
-						min: 0,
 						max: /*[[${ kal }]]*/,
 						beginAtZero: true
 					},
@@ -149,11 +152,10 @@
 				}
 			}
 		};
-		
-		/*
-		 * チャートの作成
-		 */
-		var myRadar = new Chart($("#myChart"), config);
+		// チャート作成
+		var context = document.getElementById("myChart").getContext('2d');
+		var myRadar = new Chart(context, config);
+	/*]]>*/
 	</script>
 	   	   
 		
