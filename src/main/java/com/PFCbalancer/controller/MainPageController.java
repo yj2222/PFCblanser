@@ -30,10 +30,13 @@ public class MainPageController {
 		int foodsFat;
 		int foodsCarb;
 
+		List<FormFoodsData> foodsList = new ArrayList<>();
 
 
 	@GetMapping("/")
 	public String getMain(@ModelAttribute FormBodyData formBodyData, FormFoodsData formFoodsData, Model model) {
+
+		model.addAttribute("foodsList",foodsList);
 
 		model.addAttribute("label",label);
     model.addAttribute("protein",protein);
@@ -63,6 +66,8 @@ public class MainPageController {
 		carb = pfc.getCarb();
 		kal = protein + fat + carb;
 
+		model.addAttribute("foodsList",foodsList);
+
 		model.addAttribute("label",label);
     model.addAttribute("protein",protein);
     model.addAttribute("fat",fat);
@@ -79,9 +84,6 @@ public class MainPageController {
 	@PostMapping("/main/calcNowPFC")
 	public String postMainNowPFC(@ModelAttribute FormBodyData formBodyData, FormFoodsData formFoodsData, BindingResult bindingResult, Model model) {
 
-//		model.addAttribute("formFoodsData",formFoodsData);
-
-		List<FormFoodsData> foodsList = new ArrayList<>();
 		foodsList.add(formFoodsData);
 		model.addAttribute("foodsList",foodsList);
 
