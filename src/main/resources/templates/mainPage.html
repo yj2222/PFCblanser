@@ -26,31 +26,31 @@
 		<div class="innerBlack">
 		
 			<div class="bodyCalcArea">
-				<h2 class="bodyCalcArea__title">Input Data</h2>
+				<h2 class="bodyCalcArea__title">Input Body Data</h2>
 				<div class="bodyCalcAreaContainer d-sm-flex justify-content-center">
-					<form method="post" th:action="@{/main/calc}" th:object="${formBodyData}" class="bodyCalcArea__input">
+					<form method="post" th:action="@{/main/calcIdealPFC}" th:object="${formBodyData}" class="bodyCalcArea__input">
 						<table class="mx-auto mx-md-3">
 							<tr>
-								<th class="bodyCalcArea__input--left">体重：</th>
+								<th class="bodyCalcArea__inputLeft">体重：</th>
 								<td>
-									<div class="bodyCalcArea__input--right">
-										<input type="number" name="weight" min="30" max="200" class="" th:field="*{weight}">
+									<div class="bodyCalcArea__inputRight">
+										<input type="number" name="weight" min="30" max="200" class="bodyCalcArea__inputRight--box"  th:field="*{weight}">
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<th class="bodyCalcArea__input--left">身長：</th>
+								<th class="bodyCalcArea__inputLeft">身長：</th>
 								<td>
-									<div class="bodyCalcArea__input--right">
-										<input type="number" name="height" min="130" max="250" class="" th:field="*{height}">
+									<div class="bodyCalcArea__inputRight">
+										<input type="number" name="height" min="130" max="250" class="bodyCalcArea__inputRight--box" th:field="*{height}">
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<th class="bodyCalcArea__input--left">年齢：</th>
+								<th class="bodyCalcArea__inputLeft">年齢：</th>
 								<td>
-									<div class="bodyCalcArea__input--right">
-										<input type="number" name="age" min="0" max="100" class="" th:field="*{age}">
+									<div class="bodyCalcArea__inputRight">
+										<input type="number" name="age" min="0" max="100" class="bodyCalcArea__inputRight--box" th:field="*{age}">
 									</div>
 								</td>
 							</tr>
@@ -61,7 +61,7 @@
 					</form>
 					<table class="bodyCalcArea__result mx-auto mx-md-3">
 						<tr>
-							<th colspan="2" class="bodyCalcArea__result--title">PFC基準値</th>
+							<th colspan="2" class="bodyCalcArea__result--title">IdealPFC(PFC理想値)</th>
 						</tr>
 						<tr>
 							<td class="bodyCalcArea__result--left borderGray">Protein(タンパク質)</td>
@@ -93,6 +93,53 @@
 
 		</div>
 	</div>
+
+	<div class="bottom" style="background-image: url(../image/indexTop2.jpg);">
+		<div class="innerDarkBlack">
+
+			<div class="bottomForm">
+				<h2 class="bottomForm__title">Input Foods Data</h2>
+				<form method="post" th:action="@{/main/calcNowPFC}" th:object="${formFoodsData}">
+					<div class="bottomForm__inputArea">
+						<div>
+							<label class="bottomForm__inputArea--label">商品名:</label>
+							<input class="bottomForm__inputArea--textbox" type="text" th:field="*{foodsName}">
+							<label class="bottomForm__inputArea--label">P:</label>
+							<input class="bottomForm__inputArea--numberbox" type="number" th:field="*{foodsProtein}">
+							<label class="bottomForm__inputArea--label">F:</label>
+							<input class="bottomForm__inputArea--numberbox" type="number" th:field="*{foodsFat}">
+							<label class="bottomForm__inputArea--label">C:</label>
+							<input class="bottomForm__inputArea--numberbox" type="number" th:field="*{foodsCarb}">
+						</div>
+						<div class="bottomForm__inputArea--btn">
+							<button type="submit" class="bottomForm__inputArea--btnSubmit">add</button>
+						</div>
+					</div>
+				</form>
+				<div class="bottomForm__foodsList">
+					<p>AddFoodsList(追加された食品データ)</p>
+					<table class="bottomForm__foodsList--table">
+						<tr>
+							<th class="bottomForm__foodsList--tableHead">商品名</th>
+							<th class="bottomForm__foodsList--tableHead">P(タンパク質)</th>
+							<th class="bottomForm__foodsList--tableHead">F(脂質)</th>
+							<th class="bottomForm__foodsList--tableHead">C(炭水化物)</th>
+						</tr>
+
+						<tr th:each="list : ${foodsList}">
+							<td th:text="${list.foodsName}" class="bottomForm__foodsList--tableBottom"></td>
+							<td th:text="${list.foodsProtein} + g" class="bottomForm__foodsList--tableBottom"></td>
+							<td th:text="${list.foodsFat} + g" class="bottomForm__foodsList--tableBottom"></td>
+							<td th:text="${list.foodsCarb} + g" class="bottomForm__foodsList--tableBottom"></td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<footer>
 		<div>
 			<p class="footerText">copyLighting product by Yuji</p>
@@ -117,18 +164,18 @@
 					labels:/*[[${ label }]]*/,
 					datasets: [
 						{
-						label: "idealPCF(PCFの推奨値)",
+						label: "idealPCF(PCFの理想値)",
 						backgroundColor: color(colorSet.red).alpha(0.5).rgbString(),
 						borderColor: colorSet.red,
 						pointBackgroundColor: colorSet.red,
-						data:[ /*[[${ carb }]]*/, /*[[${ fat * 3 }]]*/, /*[[${ protein * 3 }]]*/ ]
+						data:[ /*[[ ${ carb }]]*/, /*[[ ${ fat * 3 }]]*/, /*[[ ${ protein * 3 }]]*/ ]
 						},
 						{
-						label: "now(現在のPCFの推奨値)",
+						label: "now(PCFの現在値)",
 						backgroundColor: color(colorSet.blue).alpha(0.5).rgbString(),
 						borderColor: colorSet.blue,
 						pointBackgroundColor: colorSet.blue,
-						data:[1800, 1200, 800]
+						data:[ /*[[ ${ foodsCarb * 4 } ]]*/, /*[[ ${ foodsFat * 9 * 3 } ]]*/, /*[[ ${ foodsProtein * 4 * 3 } ]]*/ ]
 						},
 					]
 				},

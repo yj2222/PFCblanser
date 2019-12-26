@@ -98,17 +98,25 @@ a{
 
 table{
 	margin: 0 auto;
+	/* border-spacing: 0;
+	border-collapse: collapse;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px; */
 }
 
-.bodyCalcArea__input--left{
+.bodyCalcArea__inputLeft{
 	height: 30px;
 	padding: 0 10px;
 	font-weight: bold;
 }
 
+.bodyCalcArea__inputRight--box{
+	width: 100px;
+}
+
 input[type="number"]{
 	height: 30px;
-	width: 100px;
 	padding-left: 10px;
 	border-radius: 10px;
 }
@@ -153,15 +161,90 @@ input[type="number"]{
 }
 
 .bodyChart{
-		max-width: 900px; 
-		margin: 0 auto; 
-		text-align: center;
+	max-width: 900px; 
+	margin: 0 auto; 
+	text-align: center;
 }
 
 .bodyChart__Title{
 	padding: 50px 0;
 	font-weight: bold;
 	font-size: 30px; 
+}
+
+.bottom{
+	background-size: cover;
+	
+}
+
+.innerDarkBlack{
+	background-color: rgba(0, 0, 0, 0.6);
+	padding-bottom: 50px;
+
+}
+
+.bottomForm{
+	text-align: center;
+	color: #ffde00;
+	font-weight: bold;
+}
+
+.bottomForm__title{
+	padding: 50px 0;
+	font-weight: bold;
+	font-size: 30px; 
+}
+
+.bottomForm__inputArea{
+	display: flex;
+	justify-content: center;
+}
+
+.bottomForm__inputArea--textbox{
+	width: 100px;
+	height: 30px;
+	padding: 0 10px;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.bottomForm__inputArea--numberbox{
+	width: 50px;
+}
+
+.bottomForm__inputArea--btn{
+}
+
+.bottomForm__inputArea--btnSubmit{
+	width: 70px;
+	height: 30px;
+	border-radius: 20px;
+	background-color: #ffde00;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 3px 0 0 10px;
+}
+
+.bottomForm__foodsList{
+	padding-top: 50px;
+}
+
+.bottomForm__foodsList--table{
+	border: 2px solid gray;
+	background-color: rgba(255, 221, 0, 0.7);
+	color: black;
+}
+
+.bottomForm__foodsList--tableHead{
+	padding: 10px;
+	border-bottom: 2px solid lightgray;
+	border-right: 1px dashed lightgray;
+}
+
+.bottomForm__foodsList--tableBottom{
+	padding: 5px 10px;
+	border-bottom: 1px dashed lightgray;
+	border-right: 1px dashed lightgray;
 }
 
 footer{
