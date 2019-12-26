@@ -41,12 +41,9 @@ public class MainPageController {
     model.addAttribute("carb",carb);
     model.addAttribute("kal",kal);
 
-//		model.addAttribute("foodsName",foodsName);
     model.addAttribute("foodsProtein",foodsProtein);
     model.addAttribute("foodsFat",foodsFat);
     model.addAttribute("foodsCarb",foodsCarb);
-
-//        model.addAttribute("formFoodsData",formFoodsData);
 
 		return "mainPage";
 	}
@@ -67,15 +64,14 @@ public class MainPageController {
 		kal = protein + fat + carb;
 
 		model.addAttribute("label",label);
-        model.addAttribute("protein",protein);
-        model.addAttribute("fat",fat);
-        model.addAttribute("carb",carb);
-        model.addAttribute("kal",kal);
+    model.addAttribute("protein",protein);
+    model.addAttribute("fat",fat);
+    model.addAttribute("carb",carb);
+    model.addAttribute("kal",kal);
 
-//        model.addAttribute("foodsName",foodsName);
-//        model.addAttribute("foodsProtein",foodsProtein);
-//        model.addAttribute("foodsFat",foodsFat);
-//        model.addAttribute("foodsCarb",foodsCarb);
+    model.addAttribute("foodsProtein",foodsProtein);
+    model.addAttribute("foodsFat",foodsFat);
+    model.addAttribute("foodsCarb",foodsCarb);
 
 		return "mainPage";
 	}
@@ -90,15 +86,14 @@ public class MainPageController {
 		model.addAttribute("foodsList",foodsList);
 
 		model.addAttribute("label",label);
-        model.addAttribute("protein",protein);
-        model.addAttribute("fat",fat);
-        model.addAttribute("carb",carb);
-        model.addAttribute("kal",kal);
+    model.addAttribute("protein",protein);
+    model.addAttribute("fat",fat);
+    model.addAttribute("carb",carb);
+    model.addAttribute("kal",kal);
 
-//        model.addAttribute("foodsName",foodsName);
-//        model.addAttribute("foodsProtein",foodsProtein);
-//        model.addAttribute("foodsFat",foodsFat);
-//        model.addAttribute("foodsCarb",foodsCarb);
+    model.addAttribute("foodsProtein",foodsProtein);
+    model.addAttribute("foodsFat",foodsFat);
+    model.addAttribute("foodsCarb",foodsCarb);
 
 		return "mainPage";
 	}
