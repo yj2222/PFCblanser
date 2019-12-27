@@ -102,7 +102,7 @@
 				<form method="post" th:action="@{/main/calcNowPFC}" th:object="${formFoodsData}">
 					<div class="bottomForm__inputArea">
 						<div>
-							<label class="bottomForm__inputArea--label">商品名:</label>
+							<label class="bottomForm__inputArea-label">商品名:</label>
 							<input class="bottomForm__inputArea--textbox" type="text" th:field="*{foodsName}">
 							<label class="bottomForm__inputArea--label">P:</label>
 							<input class="bottomForm__inputArea--numberbox" type="number" th:field="*{foodsProtein}">
@@ -118,22 +118,35 @@
 				</form>
 				<div class="bottomForm__foodsList">
 					<p>AddFoodsList(追加された食品データ)</p>
-					<table class="bottomForm__foodsList--table">
-						<tr>
-							<th class="bottomForm__foodsList--tableHead">商品名</th>
-							<th class="bottomForm__foodsList--tableHead">P(タンパク質)</th>
-							<th class="bottomForm__foodsList--tableHead">F(脂質)</th>
-							<th class="bottomForm__foodsList--tableHead">C(炭水化物)</th>
-						</tr>
-
-						<tr th:each="list : ${foodsList}">
-							<td th:text="${list.foodsName}" class="bottomForm__foodsList--tableBottom"></td>
-							<td th:text="${list.foodsProtein} + g" class="bottomForm__foodsList--tableBottom"></td>
-							<td th:text="${list.foodsFat} + g" class="bottomForm__foodsList--tableBottom"></td>
-							<td th:text="${list.foodsCarb} + g" class="bottomForm__foodsList--tableBottom"></td>
-						</tr>
-
-					</table>
+					<form method="post" th:action="@{/deleteListData}" th:object="${formFoodsList}">
+						<table class="bottomForm__foodsList--table">
+							<tr>
+								<th class="bottomForm__foodsList--tableHead"></th>
+								<th class="bottomForm__foodsList--tableHead">商品名</th>
+								<th class="bottomForm__foodsList--tableHead">P(タンパク質)</th>
+								<th class="bottomForm__foodsList--tableHead">F(脂質)</th>
+								<th class="bottomForm__foodsList--tableHead">C(炭水化物)</th>
+								<th class="bottomForm__foodsList--tableHead"></th>
+								
+							</tr>
+	
+							<tr th:each="list, listStat : ${foodsList}">
+								<td th:text="${listStat.count}" class="bottomForm__foodsList--tableBottom"></td>
+								<td th:text="${list.foodsName}" class="bottomForm__foodsList--tableBottom"></td>
+								<td th:text="${list.foodsProtein} + g" class="bottomForm__foodsList--tableBottom"></td>
+								<td th:text="${list.foodsFat} + g" class="bottomForm__foodsList--tableBottom"></td>
+								<td th:text="${list.foodsCarb} + g" class="bottomForm__foodsList--tableBottom"></td>
+								<td>
+									<!-- <input type="text" th:field="*{foodsIndexNumber}" th:value="${listStat.count}"> -->
+									<input type="text" name="foodsIndexNumber" th:value="${listStat.count}">
+								</td>
+								<td>
+									<button class="" type="submit" >削除</button>
+								</td>
+							</tr>
+	
+						</table>
+					</form>
 				</div>
 			</div>
 
