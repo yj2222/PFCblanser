@@ -6,10 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.PFCbalancer.model.FormBodyData;
@@ -20,13 +18,13 @@ import com.PFCbalancer.model.PFC;
 @Controller
 public class MainPageController {
 
-    String label[] = {"Carbohydrate(炭水化物)","Fat(脂質)","Protein(タンパク質)"};
+  String label[] = {"Carbohydrate(炭水化物)","Fat(脂質)","Protein(タンパク質)"};
 
-    int kal;
-    int protein;
-    int fat;
-    int carb;
-    int pfcData[] = {protein, fat, carb};
+  int kal;
+  int protein;
+  int fat;
+  int carb;
+  int pfcData[] = {protein, fat, carb};
 
 	int foodsProtein;
 	int foodsFat;
@@ -36,14 +34,24 @@ public class MainPageController {
 
 
 	@GetMapping("/")
-	public String getMain(@ModelAttribute FormBodyData formBodyData, 
-			FormFoodsData formFoodsData, 
-			FormFoodsList formFoodsList, 
-			Model model) {
+	public String getMain(@ModelAttribute FormBodyData formBodyData,
+		FormFoodsData formFoodsData,
+		FormFoodsList formFoodsList,
+		Model model) {
 
-	model.addAttribute("foodsList",foodsList);
+		foodsProtein = 0;
+		foodsFat = 0;
+		foodsCarb = 0;
 
-	model.addAttribute("label",label);
+		for(FormFoodsData ffd : foodsList) {
+			foodsProtein += ffd.getFoodsProtein();
+			foodsFat += ffd.getFoodsFat();
+			foodsCarb += ffd.getFoodsCarb();
+		}
+
+		model.addAttribute("foodsList",foodsList);
+
+		model.addAttribute("label",label);
     model.addAttribute("protein",protein);
     model.addAttribute("fat",fat);
     model.addAttribute("carb",carb);
@@ -57,27 +65,27 @@ public class MainPageController {
 	}
 
 	@PostMapping("/main/calcIdealPFC")
-	public String postMainIdealPFC(@ModelAttribute FormBodyData formBodyData, 
-			FormFoodsData formFoodsData, 
-			FormFoodsList formFoodsList, 
-			BindingResult bindingResult, 
-			Model model) {
+	public String postMainIdealPFC(@ModelAttribute FormBodyData formBodyData,
+		FormFoodsData formFoodsData,
+		FormFoodsList formFoodsList,
+		BindingResult bindingResult,
+		Model model) {
 
-	PFC pfc = new PFC();
+		PFC pfc = new PFC();
 
-	pfc.setWeight(formBodyData.getWeight());
-	pfc.setHeight(formBodyData.getHeight());
-	pfc.setAge(formBodyData.getAge());
-	pfc.setPFC();
+		pfc.setWeight(formBodyData.getWeight());
+		pfc.setHeight(formBodyData.getHeight());
+		pfc.setAge(formBodyData.getAge());
+		pfc.setPFC();
 
-	protein = pfc.getProtein();
-	fat = pfc.getFat();
-	carb = pfc.getCarb();
-	kal = protein + fat + carb;
+		protein = pfc.getProtein();
+		fat = pfc.getFat();
+		carb = pfc.getCarb();
+		kal = protein + fat + carb;
 
-	model.addAttribute("foodsList",foodsList);
+		model.addAttribute("foodsList",foodsList);
 
-	model.addAttribute("label",label);
+		model.addAttribute("label",label);
     model.addAttribute("protein",protein);
     model.addAttribute("fat",fat);
     model.addAttribute("carb",carb);
@@ -91,20 +99,22 @@ public class MainPageController {
 	}
 
 	@PostMapping("/main/calcNowPFC")
-	public String postMainNowPFC(@ModelAttribute FormBodyData formBodyData, 
-			FormFoodsData formFoodsData, 
-			FormFoodsList formFoodsList, 
-			BindingResult bindingResult, 
-			Model model) {
+	public String postMainNowPFC(@ModelAttribute FormBodyData formBodyData,
+		FormFoodsData formFoodsData,
+		FormFoodsList formFoodsList,
+		BindingResult bindingResult,
+		Model model) {
 
-	foodsList.add(formFoodsData);
-	model.addAttribute("foodsList",foodsList);
-	
-	foodsProtein += formFoodsData.getFoodsProtein();
-	foodsFat += formFoodsData.getFoodsFat();
-	foodsCarb += formFoodsData.getFoodsCarb();
+		foodsList.add(formFoodsData);
+		model.addAttribute("foodsList",foodsList);
 
-	model.addAttribute("label",label);
+		for(FormFoodsData ffd : foodsList) {
+			foodsProtein += ffd.getFoodsProtein();
+			foodsFat += ffd.getFoodsFat();
+			foodsCarb += ffd.getFoodsCarb();
+		}
+
+		model.addAttribute("label",label);
     model.addAttribute("protein",protein);
     model.addAttribute("fat",fat);
     model.addAttribute("carb",carb);
@@ -116,19 +126,23 @@ public class MainPageController {
 
 		return "mainPage";
 	}
-	
+
 	@PostMapping("/deleteListData")
-    public String postUserDetailDelete(@ModelAttribute FormBodyData formBodyData, 
-			FormFoodsData formFoodsData, 
-			FormFoodsList formFoodsList, 
-			BindingResult bindingResult, 
+    public String postUserDetailDelete(@ModelAttribute("test")String name, FormBodyData formBodyData,
+  		FormFoodsData formFoodsData,
+  		FormFoodsList formFoodsList,
+			BindingResult bindingResult,
 			Model model) {
 
-        System.out.println(formFoodsList.getFoodsIndexNumber());
+	  	System.out.println("delete=" + formFoodsList.getDelete());
+	  	int num = formFoodsList.getDelete();
 
-        return getMain(formBodyData, formFoodsData, formFoodsList, model);
+	  	System.out.println(foodsList.get(num));
+
+	  	foodsList.remove(num);
+
+      return getMain(formBodyData, formFoodsData, formFoodsList, model);
     }
-	
 }
 
 

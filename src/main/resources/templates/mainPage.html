@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    
+
     <!-- Bootstrapの設定 -->
 	<!-- <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet"></link> -->
 	<!-- <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script> -->
@@ -24,7 +24,7 @@
 	</div>
 	<div class="body" style="background-image: url(../image/indexTop.jpg);">
 		<div class="innerBlack">
-		
+
 			<div class="bodyCalcArea">
 				<h2 class="bodyCalcArea__title">Input Body Data</h2>
 				<div class="bodyCalcAreaContainer d-sm-flex justify-content-center">
@@ -82,7 +82,7 @@
 					</table>
 				</div>
 			</div>
-		
+
 			<!-- チャート描画キャンバス -->
 			<div style="background-color: white;">
 				<div class="bodyChart">
@@ -118,7 +118,7 @@
 				</form>
 				<div class="bottomForm__foodsList">
 					<p>AddFoodsList(追加された食品データ)</p>
-					<form method="post" th:action="@{/deleteListData}" th:object="${formFoodsList}">
+					<form method="post" th:action="@{/deleteListData}" th:object="${formFoodsData}">
 						<table class="bottomForm__foodsList--table">
 							<tr>
 								<th class="bottomForm__foodsList--tableHead"></th>
@@ -127,9 +127,9 @@
 								<th class="bottomForm__foodsList--tableHead">F(脂質)</th>
 								<th class="bottomForm__foodsList--tableHead">C(炭水化物)</th>
 								<th class="bottomForm__foodsList--tableHead"></th>
-								
+
 							</tr>
-	
+
 							<tr th:each="list, listStat : ${foodsList}">
 								<td th:text="${listStat.count}" class="bottomForm__foodsList--tableBottom"></td>
 								<td th:text="${list.foodsName}" class="bottomForm__foodsList--tableBottom"></td>
@@ -137,14 +137,10 @@
 								<td th:text="${list.foodsFat} + g" class="bottomForm__foodsList--tableBottom"></td>
 								<td th:text="${list.foodsCarb} + g" class="bottomForm__foodsList--tableBottom"></td>
 								<td>
-									<!-- <input type="text" th:field="*{foodsIndexNumber}" th:value="${listStat.count}"> -->
-									<input type="text" name="foodsIndexNumber" th:value="${listStat.count}">
-								</td>
-								<td>
-									<button class="" type="submit" >削除</button>
+									<button class="" type="submit" name="delete" th:value="${listStat.index}">削除</button>
 								</td>
 							</tr>
-	
+
 						</table>
 					</form>
 				</div>
@@ -166,10 +162,10 @@
 				yellow: 'rgb(255, 205, 86)',
 				blue: 'rgb(54, 162, 235)'
 			};
-			
+
 			// 色のRGB変換
 			var color = Chart.helpers.color;
-			
+
 			// チャートの初期設定
 			var config = {
 				type: 'radar',
@@ -224,9 +220,9 @@
 		var myRadar = new Chart(context, config);
 		/*]]>*/
 	</script>
-	
-	
-	
-    
+
+
+
+
 <body>
 </html>
