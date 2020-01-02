@@ -83,19 +83,7 @@ public class MainPageController {
 		carb = pfc.getCarb();
 		kal = protein + fat + carb;
 
-		model.addAttribute("foodsList",foodsList);
-
-		model.addAttribute("label",label);
-    model.addAttribute("protein",protein);
-    model.addAttribute("fat",fat);
-    model.addAttribute("carb",carb);
-    model.addAttribute("kal",kal);
-
-    model.addAttribute("foodsProtein",foodsProtein);
-    model.addAttribute("foodsFat",foodsFat);
-    model.addAttribute("foodsCarb",foodsCarb);
-
-		return "mainPage";
+		return getMain(formBodyData, formFoodsData, formFoodsList, model);
 	}
 
 	@PostMapping("/main/calcNowPFC")
@@ -106,39 +94,18 @@ public class MainPageController {
 		Model model) {
 
 		foodsList.add(formFoodsData);
-		model.addAttribute("foodsList",foodsList);
 
-		for(FormFoodsData ffd : foodsList) {
-			foodsProtein += ffd.getFoodsProtein();
-			foodsFat += ffd.getFoodsFat();
-			foodsCarb += ffd.getFoodsCarb();
-		}
-
-		model.addAttribute("label",label);
-    model.addAttribute("protein",protein);
-    model.addAttribute("fat",fat);
-    model.addAttribute("carb",carb);
-    model.addAttribute("kal",kal);
-
-    model.addAttribute("foodsProtein",foodsProtein);
-    model.addAttribute("foodsFat",foodsFat);
-    model.addAttribute("foodsCarb",foodsCarb);
-
-		return "mainPage";
+		return getMain(formBodyData, formFoodsData, formFoodsList, model);
 	}
 
 	@PostMapping("/deleteListData")
-    public String postUserDetailDelete(@ModelAttribute("test")String name, FormBodyData formBodyData,
+    public String postUserDetailDelete(@ModelAttribute FormBodyData formBodyData,
   		FormFoodsData formFoodsData,
   		FormFoodsList formFoodsList,
 			BindingResult bindingResult,
 			Model model) {
 
-	  	System.out.println("delete=" + formFoodsList.getDelete());
 	  	int num = formFoodsList.getDelete();
-
-	  	System.out.println(foodsList.get(num));
-
 	  	foodsList.remove(num);
 
       return getMain(formBodyData, formFoodsData, formFoodsList, model);
