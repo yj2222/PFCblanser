@@ -20,11 +20,11 @@ public class MainPageController {
 
   String label[] = {"Carbohydrate(炭水化物)","Fat(脂質)","Protein(タンパク質)"};
 
-  int kal;
-  int protein;
-  int fat;
-  int carb;
-  int pfcData[] = {protein, fat, carb};
+	int kal;
+	int protein;
+	int fat;
+	int carb;
+	int pfcData[] = {protein, fat, carb};
 
 	int foodsProtein;
 	int foodsFat;
@@ -52,14 +52,14 @@ public class MainPageController {
 		model.addAttribute("foodsList",foodsList);
 
 		model.addAttribute("label",label);
-    model.addAttribute("protein",protein);
-    model.addAttribute("fat",fat);
-    model.addAttribute("carb",carb);
-    model.addAttribute("kal",kal);
-
-    model.addAttribute("foodsProtein",foodsProtein);
-    model.addAttribute("foodsFat",foodsFat);
-    model.addAttribute("foodsCarb",foodsCarb);
+	    model.addAttribute("protein",protein);
+	    model.addAttribute("fat",fat);
+	    model.addAttribute("carb",carb);
+	    model.addAttribute("kal",kal);
+	
+	    model.addAttribute("foodsProtein",foodsProtein);
+	    model.addAttribute("foodsFat",foodsFat);
+	    model.addAttribute("foodsCarb",foodsCarb);
 
 		return "mainPage";
 	}
@@ -102,13 +102,13 @@ public class MainPageController {
     public String postUserDetailDelete(@ModelAttribute FormBodyData formBodyData,
   		FormFoodsData formFoodsData,
   		FormFoodsList formFoodsList,
-			BindingResult bindingResult,
-			Model model) {
+		BindingResult bindingResult,
+		Model model) {
 
 	  	int num = formFoodsList.getDelete();
 	  	foodsList.remove(num);
 
-      return getMain(formBodyData, formFoodsData, formFoodsList, model);
+	  	return getMain(formBodyData, formFoodsData, formFoodsList, model);
     }
 }
 

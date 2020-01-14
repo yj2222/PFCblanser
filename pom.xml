@@ -77,6 +77,13 @@
 			<artifactId>bootstrap</artifactId>
 			<version>4.3.1</version>
 		</dependency>
+		<!-- MySQL:(最新は→) https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+		  <groupId>mysql</groupId>
+		  <artifactId>mysql-connector-java</artifactId>
+		  <version>8.0.17</version>
+		  <scope>runtime</scope>
+		</dependency>
 		
 	</dependencies>
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <!-- CSSの読込 -->
+    <link th:href="@{/css/reset.css}" rel="stylesheet"></link>
+    <link th:href="@{/css/login.css}" rel="stylesheet"></link>
+    <title>Login</title>
+</head>
+<body>
+	<div class="login" style="background-image: url(../image/backImg1.jpg);">
+		<div>
+			<h1>Login</h1>
+			<p th:text="${msg}" class="errorMsg"></p>
+			<form th:action="@{/login}" method="post" th:object="${formLoginData}">
+				<div>
+					<label>nickname:</label>
+					<input type="text" th:field="*{nickname}">
+				</div>
+				<div>
+					<label>password:</label>
+					<input type="password" th:field="*{password}">
+				</div>
+				<div>
+					<button type="submit">Login</button>	
+				</div>
+			</form>
+		
+		</div>
+	</div>
+	
+	
+
+
+	<script type="text/javascript" th:inline="javascript">
+	</script>
+
+<body>
+</html>
