@@ -17,16 +17,15 @@ import com.PFCbalancer.model.FormBodyData;
 import com.PFCbalancer.model.FormFoodsData;
 import com.PFCbalancer.model.FormFoodsList;
 import com.PFCbalancer.model.PFC;
+import com.PFCbalancer.model.User;
 
 @Controller
 public class MainPageController {
-	
+
 	@Autowired
 	HttpSession session;
 
 	String label[] = {"Carbohydrate(炭水化物)","Fat(脂質)","Protein(タンパク質)"};
-	
-	String loginUser;
 
 	int kal;
 	int protein;
@@ -40,6 +39,7 @@ public class MainPageController {
 
 	List<FormFoodsData> foodsList = new ArrayList<>();
 
+	User loginUser = new User();
 
 	@GetMapping("/")
 	public String getMain(@ModelAttribute FormBodyData formBodyData,
@@ -64,22 +64,13 @@ public class MainPageController {
 	    model.addAttribute("fat",fat);
 	    model.addAttribute("carb",carb);
 	    model.addAttribute("kal",kal);
-	
+
 	    model.addAttribute("foodsProtein",foodsProtein);
 	    model.addAttribute("foodsFat",foodsFat);
 	    model.addAttribute("foodsCarb",foodsCarb);
-	    
-	    System.out.println(session.getAttribute("loginUser"));
-//	    if() {
-//	    	
-//	    }
-//	    loginUser = (String) session.getAttribute("loginUser");
-//	    System.out.println(loginUser);
-	    
-//	    session.setAttribute("loginUser", loginUser);
-	    
-	    
-	    
+
+	    loginUser = (User) session.getAttribute("loginUser");
+	    model.addAttribute("loginUser",loginUser);
 
 		return "mainPage";
 	}

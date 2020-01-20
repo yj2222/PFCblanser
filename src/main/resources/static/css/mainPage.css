@@ -40,7 +40,18 @@ a{
 	}
 }
 
-.headerBtn, .headerLoginUser{
+.headerLoginUser{
+	line-height: 60px;
+	font-size: 14px;
+	padding-right: 10px;
+}
+
+.headerLoginUser__name{
+	font-size: 20px;
+	color: yellow;
+}
+
+.headerBtn{
 	line-height: 60px;
 	cursor: pointer;
 	position: relative;
