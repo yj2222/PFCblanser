@@ -1,7 +1,82 @@
+.errorMsg{
+	color: pink;
+	font-size: 14px;
+}
+
 .login{
+	height: 100vh;
+	position: relative;
+}
+
+h1{
+	font-size: 30px;
+	font-weight: bold;
+	color: rgb(255, 221, 0);
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.loginBackImg{
+	height: 100%;
 	background-size: cover;
 }
 
-.errorMsg{
-	color: pink;
+.loginBackImg__smoke{
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
 }
+
+form{
+	background-color: rgba(0, 0, 0, 0.5);
+	
+	padding: 50px 50px 0;
+	position: absolute;
+	top: 20%;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: 0 auto;
+	max-width: 300px;
+	height: 350px;
+	
+}
+
+.inputArea{
+	margin-bottom: 30px;
+}
+
+.inputArea__box{
+	height: 50px;
+	width: 100%;
+	box-sizing: border-box;
+	border-radius: 10px;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+::placeholder {
+	color: rgb(190, 190, 190);
+  }
+  
+.formBtn{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.formBtn__submit{
+	width: 100%;
+	height: 50px;
+	font-size: 30px;
+	background-color: rgba(255, 221, 0, 0.5);
+	border: none;
+	color: white;
+	font-weight: bold;
+}
+
+.formBtn__submit:hover{
+	background-color: rgba(255, 221, 0, 0.7);
+	transition: 0.3s;
+}
+
+
+

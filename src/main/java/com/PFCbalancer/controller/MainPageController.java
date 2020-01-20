@@ -3,6 +3,9 @@ package com.PFCbalancer.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,8 +20,13 @@ import com.PFCbalancer.model.PFC;
 
 @Controller
 public class MainPageController {
+	
+	@Autowired
+	HttpSession session;
 
-  String label[] = {"Carbohydrate(炭水化物)","Fat(脂質)","Protein(タンパク質)"};
+	String label[] = {"Carbohydrate(炭水化物)","Fat(脂質)","Protein(タンパク質)"};
+	
+	String loginUser;
 
 	int kal;
 	int protein;
@@ -60,6 +68,18 @@ public class MainPageController {
 	    model.addAttribute("foodsProtein",foodsProtein);
 	    model.addAttribute("foodsFat",foodsFat);
 	    model.addAttribute("foodsCarb",foodsCarb);
+	    
+	    System.out.println(session.getAttribute("loginUser"));
+//	    if() {
+//	    	
+//	    }
+//	    loginUser = (String) session.getAttribute("loginUser");
+//	    System.out.println(loginUser);
+	    
+//	    session.setAttribute("loginUser", loginUser);
+	    
+	    
+	    
 
 		return "mainPage";
 	}

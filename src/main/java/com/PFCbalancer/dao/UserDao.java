@@ -26,8 +26,6 @@ public class UserDao implements UserDaoInterface {
 			Map<String, Object> map = jdbc.queryForMap("SELECT * FROM account"
 	                + " WHERE nickname = ? and password = ?", nickname, password);
 	        
-	        System.out.println("マップの中身＝" + map);
-
 	        user.setNickname((String) map.get("nickname"));
 	        user.setPassword((String) map.get("password")); 
 	        user.setEmail((String) map.get("email"));

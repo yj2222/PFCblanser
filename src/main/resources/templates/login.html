@@ -10,24 +10,23 @@
     <title>Login</title>
 </head>
 <body>
-	<div class="login" style="background-image: url(../image/backImg1.jpg);">
-		<div>
-			<h1>Login</h1>
-			<p th:text="${msg}" class="errorMsg"></p>
-			<form th:action="@{/login}" method="post" th:object="${formLoginData}">
-				<div>
-					<label>nickname:</label>
-					<input type="text" th:field="*{nickname}">
-				</div>
-				<div>
-					<label>password:</label>
-					<input type="password" th:field="*{password}">
-				</div>
-				<div>
-					<button type="submit">Login</button>	
-				</div>
-			</form>
-		
+	<div class="login">
+		<div class="loginBackImg" style="background-image: url(../image/indexTop.jpg);">
+			<div class="loginBackImg__smoke">
+				<form th:action="@{/login}" method="post" th:object="${formLoginData}">
+					<h1>Login Page</h1>
+					<p th:text="${msg}" class="errorMsg"></p>
+					<div class="inputArea">
+						<input type="text" th:field="*{nickname}" class="inputArea__box" placeholder="nickname">
+					</div>
+					<div class="inputArea">
+						<input type="password" th:field="*{password}" class="inputArea__box" placeholder="password">
+					</div>
+					<div class="formBtn">
+						<button type="submit" class="formBtn__submit">Login</button>	
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	

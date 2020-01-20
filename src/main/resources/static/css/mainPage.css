@@ -31,6 +31,7 @@ a{
 
 .headerBtns{
 	padding-right:50px;
+	display: flex;
 }
 
 @media screen and (max-width: 499px) {
@@ -39,15 +40,16 @@ a{
 	}
 }
 
-.headerBtn{
+.headerBtn, .headerLoginUser{
 	line-height: 60px;
 	cursor: pointer;
 	position: relative;
+	margin-right: 10px;
 }
 
 .headerBtn::after {
 	position: absolute;
-	bottom: 0;
+	bottom: 18px;
 	left: 0;
 	content: '';
 	width: 100%;

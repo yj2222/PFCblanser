@@ -18,9 +18,15 @@
 	<div class="header">
 		<h1><a th:href="@{'/'}">PFCbalancer</a></h1>
 		<div class="headerBtns">
-			<a href="#" class="headerBtn">/ Login</a>
+			<a th:href="@{'/login'}" class="headerBtn">/ Login</a>
 			<a href="#" class="headerBtn">/ Signup</a>
+			<div th:if="${loginUser != null}" class="headerLoginUser">
+				<span>/ ようこそ</span>
+				<span th:text="${loginUser.nickname}"></span>
+				<span>さん</span>		
+			</div>
 		</div>
+		
 	</div>
 	<div class="body" style="background-image: url(../image/indexTop.jpg);">
 		<div class="innerBlack">
