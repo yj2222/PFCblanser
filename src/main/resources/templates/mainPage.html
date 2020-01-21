@@ -24,9 +24,6 @@
 		</div>
 		<!-- ログイン状態 -->
 		<div th:if="${loginUser != null}" class="headerBtns">
-			<!-- <span>/ ようこそ</span>
-			<span th:text="${loginUser.nickname}"></span>
-			<span>さん</span> -->
 			<p class="headerLoginUser">/ ようこそ <strong th:text="${loginUser.nickname}" class="headerLoginUser__name"></strong> さん</p>
 			<a th:href="@{'/logout'}" class="headerBtn">/ Logout</a>
 		</div>
@@ -37,9 +34,12 @@
 
 			<div class="bodyCalcArea">
 				<h2 class="bodyCalcArea__title">Input Body Data</h2>
-				<div class="bodyCalcAreaContainer d-sm-flex justify-content-center">
+				<div class="bodyCalcAreaContainer">
 					<form method="post" th:action="@{/main/calcIdealPFC}" th:object="${formBodyData}" class="bodyCalcArea__input">
-						<table class="mx-auto mx-md-3">
+						<table class="">
+							<tr>
+								<th colspan="2" class="">Input your Data</th>
+							</tr>
 							<tr>
 								<th class="bodyCalcArea__inputLeft">体重：</th>
 								<td>
@@ -69,7 +69,7 @@
 							<button type="submit" class="bodyCalcArea__input--btnSubmit">Calc</button>
 						</div>
 					</form>
-					<table class="bodyCalcArea__result mx-auto mx-md-3">
+					<table class="bodyCalcArea__result">
 						<tr>
 							<th colspan="2" class="bodyCalcArea__result--title">IdealPFC(PFC理想値)</th>
 						</tr>
@@ -114,12 +114,14 @@
 						<div>
 							<label class="bottomForm__inputArea-label">商品名:</label>
 							<input class="bottomForm__inputArea--textbox" type="text" th:field="*{foodsName}">
-							<label class="bottomForm__inputArea--label">P:</label>
-							<input class="bottomForm__inputArea--numberbox" type="number" th:field="*{foodsProtein}">
-							<label class="bottomForm__inputArea--label">F:</label>
-							<input class="bottomForm__inputArea--numberbox" type="number" th:field="*{foodsFat}">
-							<label class="bottomForm__inputArea--label">C:</label>
-							<input class="bottomForm__inputArea--numberbox" type="number" th:field="*{foodsCarb}">
+						</div>
+						<div class="bottomForm__inputArea__pfc">
+							<label class="bottomForm__inputArea__pfc--label bottomForm__inputArea__pfc--labelFirst">P:</label>
+							<input class="bottomForm__inputArea__pfc--numberbox" type="number" th:field="*{foodsProtein}">
+							<label class="bottomForm__inputArea__pfc--label">F:</label>
+							<input class="bottomForm__inputArea__pfc--numberbox" type="number" th:field="*{foodsFat}">
+							<label class="bottomForm__inputArea__pfc--label">C:</label>
+							<input class="bottomForm__inputArea__pfc--numberbox" type="number" th:field="*{foodsCarb}">
 						</div>
 						<div class="bottomForm__inputArea--btn">
 							<button type="submit" class="bottomForm__inputArea--btnSubmit">add</button>

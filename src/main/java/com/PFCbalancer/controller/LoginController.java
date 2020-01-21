@@ -44,7 +44,7 @@ public class LoginController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	public String PostLogout(Model model) {
 
 		// セッションクリア
