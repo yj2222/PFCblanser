@@ -7,15 +7,15 @@
     <!-- CSSの読込 -->
     <link th:href="@{/css/reset.css}" rel="stylesheet"></link>
     <link th:href="@{/css/login.css}" rel="stylesheet"></link>
-    <title>Login</title>
+    <title>Signup</title>
 </head>
 <body>
 	<div class="login">
 		<div class="loginBackImg" style="background-image: url(../image/indexTop.jpg);">
 			<div class="loginBackImg__smoke">
 				<p style="padding: 50px;"></p>
-				<form th:action="@{/login}" method="post" th:object="${formLoginData}">
-					<h1>Login Page</h1>
+				<form th:action="@{/signup}" method="post" th:object="${formLoginData}">
+					<h1>Signup Page</h1>
 					<p th:text="${msg}" class="errorMsg"></p>
 					<div class="inputArea">
 						<input type="text" th:field="*{nickname}" class="inputArea__box" placeholder="nickname">
@@ -23,8 +23,11 @@
 					<div class="inputArea">
 						<input type="password" th:field="*{password}" class="inputArea__box" placeholder="password">
 					</div>
+					<div class="inputArea">
+						<input type="email" th:field="*{email}" class="inputArea__box" placeholder="email">
+					</div>
 					<div class="formBtn">
-						<button type="submit" class="formBtn__submit">Login</button>	
+						<button type="submit" class="formBtn__submit">Signup</button>	
 					</div>
 				</form>
 			</div>

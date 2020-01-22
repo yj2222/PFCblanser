@@ -6,4 +6,5 @@ import lombok.Data;
 public class FormLoginData {
 	private String nickname;
 	private String password;
+	private String email;
 }

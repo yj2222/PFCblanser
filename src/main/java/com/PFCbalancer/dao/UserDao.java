@@ -34,7 +34,36 @@ public class UserDao implements UserDaoInterface {
 		} catch(EmptyResultDataAccessException e) {
 			return user;
 		}
-         
     }
+	
+    @Override
+    public int count(String nickname) throws DataAccessException {
+
+        // DBから該当レコードをcountする。
+    	String sql = "SELECT COUNT(*) FROM account WHERE nickname=" + "'" + nickname + "'";
+        int count = jdbc.queryForObject(sql, Integer.class);
+
+        return count;
+    }
+	
+	@Override
+	public int insertOne(User user) throws DataAccessException{
+		
+		// Userが登録されているかを確認する。
+		int count = count(user.getNickname());
+		System.out.println("レコード");
+		
+		int rowNumber = 0;
+		if(count == 0) {
+			/*
+			 * 戻り値は更新行数。0なら更新されなかった事になる。
+			 * http://itdoc.hitachi.co.jp/manuals/3000/3000650220/HAPG0156.HTM
+			 */
+			rowNumber = jdbc.update("INSERT IGNORE INTO account(email,nickname,password) VALUES(?, ?, ?)", 
+					user.getEmail(), user.getNickname(), user.getPassword());
+		}
+		
+		return rowNumber;
+	}
 
 }

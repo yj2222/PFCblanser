@@ -20,7 +20,7 @@
 		<!-- ゲスト -->
 		<div th:if="${loginUser == null}" class="headerBtns">
 			<a th:href="@{'/login'}" class="headerBtn">/ Login</a>
-			<a href="#" class="headerBtn">/ Signup</a>
+			<a  th:href="@{'/signup'}" class="headerBtn">/ Signup</a>
 		</div>
 		<!-- ログイン状態 -->
 		<div th:if="${loginUser != null}" class="headerBtns">
