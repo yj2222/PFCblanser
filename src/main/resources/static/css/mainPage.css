@@ -1,4 +1,7 @@
 .header{
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
 	width: 100%;
 	background-color: black;
 	color: white;
@@ -7,7 +10,7 @@
 	z-index: 10;
 }
 
-@media screen and (max-width: 499px) {
+/* @media screen and (max-width: 499px) {
 	.header{
 		height: 60px;
 	}
@@ -19,7 +22,7 @@
 		display: flex;
 		justify-content: space-between;
 	}
-}
+} */
 
 h1{
 	font-size: 30px;
